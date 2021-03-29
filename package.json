@@ -9,6 +9,7 @@
     "@types/node": "12.20.6",
     "@types/react": "17.0.3",
     "@types/react-dom": "17.0.3",
+    "classnames": "2.2.6",
     "mobx": "4.9.4",
     "mobx-react": "5.4.3",
     "mobx-utils": "5.2.0",

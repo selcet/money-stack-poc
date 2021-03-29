@@ -4,6 +4,10 @@ import { action, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { timer } from 'rxjs';
 
+import { MdlPocGameArea } from '../game-area/game-area.component';
+
+import './app.scss';
+
 class Test {
   @observable
   private _test = 0;
@@ -30,8 +34,9 @@ export class App extends Component {
   }
 
   render() {
-    return <div>
-      {this._testInst.test}
+    return <div className="mdl-mp-root">
+      <div className="mdl-mp-timer">{this._testInst.test}</div>
+      <MdlPocGameArea perspectiveView={MdlPocGameArea.PerspectiveView.front}/>
     </div>;
   }
 }

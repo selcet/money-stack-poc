@@ -1,0 +1,24 @@
+.mdl-mp-game-area {
+  width: 100%;
+  max-width: 667px;
+  height: 100%;
+  max-height: 375px;
+  background-color: #f1f1f1;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: background-image 700ms ease-in-out;
+
+  &_view-top-betting {
+    background-image: url("./images/mdl-poc-top-view_betting.jpg");
+  }
+
+  &_view-top-drop {
+    background-image: url("./images/mdl-poc-top-view_drop.jpg");
+    transition: background-image 400ms ease-in-out;
+  }
+
+  &_view-front {
+    background-image: url("./images/mdl-poc-front-view.jpg");
+  }
+}
