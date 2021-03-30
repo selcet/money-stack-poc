@@ -1,13 +1,15 @@
 import React from 'react';
 import { PureComponent } from 'react';
 
+import { createMockArray } from '../utils/mock-array';
+
 import { BetPlace, BetPlaceType } from './bet-place/bet-place.component';
 
 import './digital-table.scss';
 
 export class DigitalTable extends PureComponent {
   render() {
-    const moneyAmount = this.createMockArray(1, 50);
+    const moneyAmount = createMockArray(1, 13);
 
     return (
       <div className="mdl-mp-digital-table">
@@ -17,9 +19,5 @@ export class DigitalTable extends PureComponent {
         {/*<BetPlace type={BetPlaceType.D} allMoney={moneyAmount} angle="-45"/>*/}
       </div>
     )
-  }
-
-  private createMockArray(start: number, end: number): string[] {
-    return Array(end - start + 1).fill(start).map((_, idx) => (start + idx).toString());
   }
 }

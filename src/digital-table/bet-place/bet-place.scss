@@ -1,12 +1,25 @@
 .mdl-mp-bet-place {
   &__layers {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column-reverse;
   }
 
   &__layer {
+    $increment: 1;
+
     display: flex;
     flex-basis: 100%;
+
+    & + &:nth-child(n+1) {
+      $increment: $increment * 2;
+      $value: (#{$increment} + 10px);
+
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transform: translateY(-(#{$value}));
+    }
   }
 }
