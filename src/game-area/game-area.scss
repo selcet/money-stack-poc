@@ -1,4 +1,5 @@
 .mdl-mp-game-area {
+  position: relative;
   width: 100%;
   max-width: 667px;
   height: 100%;
@@ -8,6 +9,14 @@
   background-repeat: no-repeat;
   background-size: contain;
   transition: background-image 700ms ease-in-out;
+
+  &__digital-table {
+    position: absolute;
+    bottom: 29%;
+    left: 21%;
+    width: 58%;
+    height: 34px;
+  }
 
   &_view-top-betting {
     background-image: url("./images/mdl-poc-top-view_betting.jpg");

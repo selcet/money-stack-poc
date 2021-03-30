@@ -1,0 +1,12 @@
+.mdl-mp-bet-place {
+  &__layers {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+  }
+
+  &__layer {
+    display: flex;
+    flex-basis: 100%;
+  }
+}

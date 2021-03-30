@@ -18,7 +18,9 @@ export class MdlPocGameArea extends PureComponent<MdlPocGameArea.Props> {
 
     return (
       <div className={classes}>
-        <DigitalTable/>
+        <div className="mdl-mp-game-area__digital-table">
+          <DigitalTable/>
+        </div>
       </div>
     );
   }

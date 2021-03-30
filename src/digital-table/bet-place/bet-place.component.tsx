@@ -5,6 +5,8 @@ import { createChunks } from '../../utils/chunk';
 
 import { MoneyStack } from '../money-stack/money-stack.component';
 
+import './bet-place.scss';
+
 const classNames = require('classnames');
 
 export enum BetPlaceType {
@@ -15,23 +17,23 @@ export enum BetPlaceType {
 }
 
 export type BetPlaceProps = Readonly<{
-  type: BetPlaceType;
   allMoney: string[];
   angle: string;
+  type: BetPlaceType;
 }>;
 
 export class BetPlace extends PureComponent<BetPlaceProps> {
   render() {
-    const { angle, allMoney } = this.props;
+    const { allMoney, angle, type } = this.props;
     const classes = classNames(
       'mdl-mp-bet-place',
-      `bet-place_${angle}`
+      `mdl-mp-bet-place_${angle} mdl-mp-bet-place_${type}`
     );
     const layers = createChunks(allMoney, 13);
 
     return (
       <div className={classes}>
-        <div className="bet-place-layers">
+        <div className="mdl-mp-bet-place__layers">
           {layers.map(this.renderLayer)}
         </div>
       </div>
@@ -44,14 +46,14 @@ export class BetPlace extends PureComponent<BetPlaceProps> {
     const right = layerMoney.slice(9, 14);
 
     return (
-      <div className="bet-place-layer">
-        <div className="left">
+      <div className="mdl-mp-bet-place__layer">
+        <div className="mdl-mp-bet-place__column mdl-mp-bet-place__column_left">
           {left.map(amount => <MoneyStack amount={amount}/>)}
         </div>
-        <div className="center">
+        <div className="mdl-mp-bet-place__column mdl-mp-bet-place__column_center">
           {center.map(amount => <MoneyStack amount={amount}/>)}
         </div>
-        <div className="right">
+        <div className="mdl-mp-bet-place__column mdl-mp-bet-place__column_right">
           {right.map(amount => <MoneyStack amount={amount}/>)}
         </div>
       </div>
