@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { PureComponent } from 'react';
 
+import { assertNever } from '../utils/asserts';
+import { DigitalTable } from '../digital-table/digital-table.component';
+
 import './game-area.scss';
 
 const classNames = require('classnames');
@@ -8,12 +11,14 @@ const classNames = require('classnames');
 export class MdlPocGameArea extends PureComponent<MdlPocGameArea.Props> {
   render() {
     const { perspectiveView } = this.props;
-    const classes = classNames('mdl-mp-game-area', perspectiveViewToClassName(perspectiveView));
+    const classes = classNames(
+      'mdl-mp-game-area',
+      perspectiveViewToClassName(perspectiveView)
+    );
+
     return (
       <div className={classes}>
-        <div className="styles2">
-          MDL POC
-        </div>
+        <DigitalTable/>
       </div>
     );
   }
@@ -47,10 +52,6 @@ export namespace MdlPocGameArea {
     perspectiveView: PerspectiveView;
     moneyStackPositions?: MoneyStackPositions;
   }>;
-}
-
-function assertNever(x: never): never {
-  throw new Error('Unexpected value. Should have been never.');
 }
 
 function perspectiveViewToClassName(view: MdlPocGameArea.PerspectiveView): string {
