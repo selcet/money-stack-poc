@@ -52,7 +52,7 @@ export class BetPlace extends PureComponent<BetPlaceProps> {
     return (
       <div className={classes} key={index}>
         <div className="mdl-mp-bet-place__column mdl-mp-bet-place__column_left">
-          {this.renderMoneyStack(left)}
+          {this.renderMoneyStack(left, 'left')}
         </div>
         <div className="mdl-mp-bet-place__column mdl-mp-bet-place__column_center">
           {this.renderMoneyStack(center)}
@@ -64,10 +64,10 @@ export class BetPlace extends PureComponent<BetPlaceProps> {
     )
   }
 
-  private renderMoneyStack(moneyStack: string[]): ReactNode {
+  private renderMoneyStack(moneyStack: string[], orientation?: string): ReactNode {
     return moneyStack.map((amount, index) =>
       <div className="mdl-mp-bet-place__money-stack" key={index}>
-        <MoneyStack amount={amount}/>
+        <MoneyStack orientation={orientation}/>
       </div>
     );
   }

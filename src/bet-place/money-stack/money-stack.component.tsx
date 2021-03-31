@@ -1,16 +1,12 @@
 import React from 'react';
-import { PureComponent } from 'react';
+import { FC } from 'react';
 
 import './money-stack.scss';
 
 export type MoneyStackProps = Readonly<{
-  amount: string;
+  orientation?: string
 }>;
 
-export class MoneyStack extends PureComponent<MoneyStackProps> {
-  render() {
-    return (
-      <div className="mdl-mp-money-stack">{this.props.amount}</div>
-    )
-  }
+export const MoneyStack: FC<MoneyStackProps> = ({orientation}) => {
+  return <div className={`mdl-mp-money-stack mdl-mp-money-stack_${orientation}`}/>;
 }
