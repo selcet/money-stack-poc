@@ -17,7 +17,7 @@ export class MdlPocGameArea extends PureComponent<MdlPocGameArea.Props> {
       'mdl-mp-game-area',
       perspectiveViewToClassName(perspectiveView)
     );
-    const moneyAmount = createMockArray(1, 26);
+    const moneyAmount = createMockArray(1, 160);
 
     return (
       <div className={classes}>
