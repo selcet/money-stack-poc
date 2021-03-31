@@ -1,9 +1,9 @@
 import React from 'react';
 import { PureComponent, ReactNode } from 'react';
 
-import { createChunks } from '../../utils/chunk';
+import { createChunks } from '../utils/chunk';
 
-import { MoneyStack } from '../money-stack/money-stack.component';
+import { MoneyStack } from './money-stack/money-stack.component';
 
 import './bet-place.scss';
 
@@ -29,35 +29,47 @@ export class BetPlace extends PureComponent<BetPlaceProps> {
       'mdl-mp-bet-place',
       `mdl-mp-bet-place_${angle} mdl-mp-bet-place_${type}`
     );
+    // eslint-disable-next-line
     const layers = createChunks(allMoney, 13);
 
     return (
       <div className={classes}>
         <div className="mdl-mp-bet-place__layers">
-          {layers.map(this.renderLayer)}
+          {layers.map((moneyStacks, index) => {
+            return this.renderLayer(moneyStacks, index);
+          })}
         </div>
       </div>
     )
   }
 
-  private readonly renderLayer = (layerMoney: string[]): ReactNode => {
-    const left = layerMoney.slice(0, 3);
-    const center = layerMoney.slice(3, 8);
-    const right = layerMoney.slice(9, 14);
+  private readonly renderLayer = (moneyStacks: string[], index: number): ReactNode => {
+    const left = moneyStacks.slice(0, 3);
+    const center = moneyStacks.slice(3, 8);
+    const right = moneyStacks.slice(8, 13);
+    const classes = classNames('mdl-mp-bet-place__layer', `mdl-mp-bet-place__layer_${index + 1}`);
 
     return (
-      <div className="mdl-mp-bet-place__layer">
+      <div className={classes} key={index}>
         <div className="mdl-mp-bet-place__column mdl-mp-bet-place__column_left">
-          {left.map(amount => <MoneyStack amount={amount}/>)}
+          {this.renderMoneyStack(left)}
         </div>
         <div className="mdl-mp-bet-place__column mdl-mp-bet-place__column_center">
-          {center.map(amount => <MoneyStack amount={amount}/>)}
+          {this.renderMoneyStack(center)}
         </div>
         <div className="mdl-mp-bet-place__column mdl-mp-bet-place__column_right">
-          {right.map(amount => <MoneyStack amount={amount}/>)}
+          {this.renderMoneyStack(right)}
         </div>
       </div>
     )
+  }
+
+  private renderMoneyStack(moneyStack: string[]): ReactNode {
+    return moneyStack.map((amount, index) =>
+      <div className="mdl-mp-bet-place__money-stack" key={index}>
+        <MoneyStack amount={amount}/>
+      </div>
+    );
   }
 }
 

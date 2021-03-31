@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { PureComponent } from 'react';
+import { BetPlace, BetPlaceType } from '../bet-place/bet-place.component';
 
 import { assertNever } from '../utils/asserts';
-import { DigitalTable } from '../digital-table/digital-table.component';
+
+import { createMockArray } from '../utils/mock-array';
 
 import './game-area.scss';
 
@@ -15,11 +17,12 @@ export class MdlPocGameArea extends PureComponent<MdlPocGameArea.Props> {
       'mdl-mp-game-area',
       perspectiveViewToClassName(perspectiveView)
     );
+    const moneyAmount = createMockArray(1, 13);
 
     return (
       <div className={classes}>
-        <div className="mdl-mp-game-area__digital-table">
-          <DigitalTable/>
+        <div className="mdl-mp-game-area__bet-place">
+          <BetPlace type={BetPlaceType.A} allMoney={moneyAmount} angle="45"/>
         </div>
       </div>
     );

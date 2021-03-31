@@ -1,21 +1,21 @@
 .mdl-mp-game-area {
   position: relative;
   width: 100%;
-  max-width: 667px;
+  max-width: 41.6875em;
   height: 100%;
-  max-height: 375px;
+  max-height: 23.4375em;
   background-color: #f1f1f1;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
   transition: background-image 700ms ease-in-out;
 
-  &__digital-table {
+  &__bet-place {
     position: absolute;
-    bottom: 29%;
-    left: 21%;
-    width: 58%;
-    height: 34px;
+    bottom: 28.9%;
+    left: 21.4%;
+    width: 12.5%;
+    height: 2.15em;
   }
 
   &_view-top-betting {

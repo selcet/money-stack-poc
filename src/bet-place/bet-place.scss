@@ -1,0 +1,79 @@
+.mdl-mp-bet-place {
+  width: 100%;
+  height: 100%;
+
+  &__layers {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+  }
+
+  &__layer {
+    $increment: 1;
+
+    background-color: rgba(255, 255, 255, 0.4);
+    box-sizing: border-box;
+    //border: 1px solid #0000007a;
+    border-radius: 0.4375em 0.5625em 0.5625em 0.5625em;
+    display: flex;
+    flex-basis: 100%;
+    justify-content: space-between;
+    transform: rotateX(10deg) skew(-23deg) translate(0.5625em, 0);
+
+    //TODO:cssToFix need fix for each next layer of stacks
+    & + &:nth-child(n+1) {
+      $increment: $increment * 2;
+      $value: (#{$increment} + 0.625em);
+
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transform: translateY(-(#{$value}));
+    }
+  }
+
+  &__column {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    &_left {
+      flex-basis: 10%;
+
+      .mdl-mp-bet-place__money-stack {
+        //width: 130%;
+        width: 100%;
+        height: 0.375em;
+        //transform: rotate(90deg);
+        transform-origin: bottom;
+      }
+    }
+
+    &_center,
+    &_right {
+      flex-basis: 35%;
+
+      .mdl-mp-bet-place__money-stack {
+        margin-bottom: 0.1875em;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  &__money-stack {
+    width: 100%;
+    height: 0.25em;
+  }
+
+  &_A {
+    .mdl-mp-bet-place__layers {
+      perspective: 4.375em; // 70px
+    }
+  }
+}
