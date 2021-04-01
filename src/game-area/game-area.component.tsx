@@ -11,13 +11,22 @@ import './game-area.scss';
 const classNames = require('classnames');
 
 export class MdlPocGameArea extends PureComponent<MdlPocGameArea.Props> {
+  readonly state: Readonly<{totalAmount: number}>;
+
+  constructor(props: MdlPocGameArea.Props) {
+    super(props);
+    this.state = {totalAmount: 13};
+    // @ts-ignore
+    window.updateTotalAmount = (totalAmount) => this.setState({...this.state, totalAmount});
+  }
+
   render() {
     const { perspectiveView } = this.props;
     const classes = classNames(
       'mdl-mp-game-area',
       perspectiveViewToClassName(perspectiveView)
     );
-    const moneyAmount = createMockArray(1, 160);
+    const moneyAmount = createMockArray(1, this.state.totalAmount);
 
     return (
       <div className={classes}>
