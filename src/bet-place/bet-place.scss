@@ -20,6 +20,28 @@
     flex-basis: 100%;
     justify-content: space-between;
 
+    //&::before,
+    //&::after {
+    //  position: absolute;
+    //  top: 50%;
+    //  left: 50%;
+    //  z-index: 5;
+    //  width: 5em;
+    //  height: 5em;
+    //  content: "";
+    //  border: 1px solid;
+    //}
+    //
+    //&::before {
+    //  background-color: rgba(255, 255, 0, 0.2);
+    //  border-color: #ff9900 #beffc6 #7ae8fd blue;
+    //}
+    //
+    //&::after {
+    //  background-color: rgba(255, 255, 255, 0.2);
+    //  border-color: yellow red deeppink green;
+    //}
+
     &:not(.mdl-mp-bet-place__layer_1) {
       position: absolute;
       z-index: 1;
@@ -33,8 +55,8 @@
         transform: rotateX(10deg) skew(-23deg) translate(#{$translateX}, #{$translateY});
       }
 
-      $translateX: $translateX - 0.5;
-      $translateY: $translateY - 1.6px;
+      $translateX: $translateX - 0.75;
+      $translateY: $translateY - 2px;
     }
   }
 
