@@ -1,18 +1,98 @@
 .mdl-mp-money-stack {
   width: 100%;
   height: 100%;
-  animation: fade-in 400ms linear forwards;
-  background: url("./images/money-stack_horizontal2.svg") no-repeat center;
+  animation-duration: 670ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.7, 0, 1, 1);
+  background-repeat: no-repeat;
+  background-position: center center;
   background-size: 100% 100%;
-  box-shadow: 1px 0.5px 1px 0.5px rgba(9, 6, 15, 0.6);
+  //box-shadow: 1px 0.5px 1px 0.5px rgba(9, 6, 15, 0.6);
 
-  &_left {
-    background: url("./images/money-stack_vertical.svg") no-repeat center;
-    background-size: 100% 100%;
+  @for $i from 1 through 13 {
+    &_#{$i} {
+      animation-name: appear-stack;
+    }
+  }
+
+  @for $i from 14 through 40 {
+    $stack-indent: (random(6) - 5) + deg;
+
+    &_#{$i} {
+      animation-name: appear-stack_#{$i};
+
+      @keyframes appear-stack_#{$i} {
+        0% {
+          opacity: 0;
+          transform: translate(-7px, -20px) rotateZ(0);
+        }
+
+        10% {
+          opacity: 1;
+        }
+
+        80% {
+          opacity: 1;
+          transform: translate(-2px, -5px) rotateZ(5deg) skew(-13deg, 9deg);
+        }
+
+        85% {
+          transform: translate(-1px, -2px) rotateZ(15deg);
+        }
+
+        90% {
+          transform: translate(0, 0) rotateZ(-15deg) skew(-6deg, 0);
+        }
+
+        95% {
+          transform: translate(0, 0) rotateZ(10deg) skew(-6deg, 0);
+        }
+
+        100% {
+          opacity: 1;
+          transform: translate(0, 0) rotateZ(#{$stack-indent});
+        }
+      }
+    }
+
+
   }
 
   &__image {
     width: 100%;
     height: 100%;
+  }
+}
+
+@keyframes appear-stack {
+  0% {
+    opacity: 0;
+    transform: translate(-7px, -20px) rotateZ(0);
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+    transform: translate(-2px, -5px) rotateZ(5deg) skew(-13deg, 9deg);
+  }
+
+  85% {
+    transform: translate(-1px, -2px) rotateZ(15deg);
+  }
+
+  90% {
+    transform: translate(0, 0) rotateZ(-15deg) skew(-6deg, 0);
+  }
+
+  95% {
+    transform: translate(0, 0) rotateZ(10deg) skew(-6deg, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) rotateZ(0);
   }
 }

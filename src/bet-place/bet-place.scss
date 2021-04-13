@@ -14,49 +14,13 @@
   &__layer {
     width: 100%;
     height: 100%;
-    box-sizing: border-box;
-    border-radius: 0.4375em 0.5625em 0.5625em 0.5625em;
     display: flex;
     flex-basis: 100%;
     justify-content: space-between;
 
-    //&::before,
-    //&::after {
-    //  position: absolute;
-    //  top: 50%;
-    //  left: 50%;
-    //  z-index: 5;
-    //  width: 5em;
-    //  height: 5em;
-    //  content: "";
-    //  border: 1px solid;
-    //}
-    //
-    //&::before {
-    //  background-color: rgba(255, 255, 0, 0.2);
-    //  border-color: #ff9900 #beffc6 #7ae8fd blue;
-    //}
-    //
-    //&::after {
-    //  background-color: rgba(255, 255, 255, 0.2);
-    //  border-color: yellow red deeppink green;
-    //}
-
     &:not(.mdl-mp-bet-place__layer_1) {
       position: absolute;
       z-index: 1;
-    }
-
-    $translateX: 9px;
-    $translateY: 0;
-
-    @for $i from 1 through 13 {
-      &_#{$i} {
-        transform: rotateX(10deg) skew(-23deg) translate(#{$translateX}, #{$translateY});
-      }
-
-      $translateX: $translateX - 0.75;
-      $translateY: $translateY - 2px;
     }
   }
 
@@ -81,25 +45,11 @@
       flex-wrap: wrap;
       flex-direction: column;
       flex-basis: 35%;
-
-      .mdl-mp-bet-place__money-stack {
-        padding-bottom: 0.0625em;
-
-        &:last-child {
-          padding-bottom: 0;
-        }
-      }
     }
   }
 
   &__money-stack {
     width: 100%;
     height: 20%;
-  }
-
-  &_A {
-    .mdl-mp-bet-place__layers {
-      perspective: 4.375em; // 70px
-    }
   }
 }

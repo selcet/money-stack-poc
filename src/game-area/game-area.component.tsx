@@ -4,7 +4,7 @@ import { BetPlace, BetPlaceType } from '../bet-place/bet-place.component';
 
 import { assertNever } from '../utils/asserts';
 
-import { createMockArray } from '../utils/mock-array';
+import { createMoneyStacksArray } from '../utils/mock-array';
 
 import './game-area.scss';
 
@@ -26,12 +26,12 @@ export class MdlPocGameArea extends PureComponent<MdlPocGameArea.Props> {
       'mdl-mp-game-area',
       perspectiveViewToClassName(perspectiveView)
     );
-    const moneyAmount = createMockArray(1, this.state.totalAmount);
+    const moneyStacks = createMoneyStacksArray(1, this.state.totalAmount);
 
     return (
       <div className={classes}>
         <div className="mdl-mp-game-area__bet-place">
-          <BetPlace type={BetPlaceType.A} allMoney={moneyAmount} angle="45"/>
+          <BetPlace type={BetPlaceType.A} allMoney={moneyStacks} angle="45"/>
         </div>
       </div>
     );
@@ -73,7 +73,7 @@ function perspectiveViewToClassName(view: MdlPocGameArea.PerspectiveView): strin
     case MdlPocGameArea.PerspectiveView.topBetting:
       return 'mdl-mp-game-area_view-top-betting';
     case MdlPocGameArea.PerspectiveView.topDrop:
-      return 'mdl-mp-game-area_view-top-betting';
+      return 'mdl-mp-game-area_view-top-drop';
     case MdlPocGameArea.PerspectiveView.front:
       return 'mdl-mp-game-area_view-front';
     default:

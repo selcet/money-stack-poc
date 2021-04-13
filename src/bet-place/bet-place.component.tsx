@@ -44,9 +44,10 @@ export class BetPlace extends PureComponent<BetPlaceProps> {
   }
 
   private readonly renderLayer = (moneyStacks: string[], index: number): ReactNode => {
-    const left = moneyStacks.slice(0, 3);
-    const center = moneyStacks.slice(3, 8);
-    const right = moneyStacks.slice(8, 13);
+    const formatted = moneyStacks;//.map((_, i) => (i + (index * 13) + 1));
+    const left = formatted.slice(0, 3);
+    const center = formatted.slice(3, 8);
+    const right = formatted.slice(8, 13);
     const classes = classNames('mdl-mp-bet-place__layer', `mdl-mp-bet-place__layer_${index + 1}`);
 
     return (
@@ -55,19 +56,19 @@ export class BetPlace extends PureComponent<BetPlaceProps> {
           {this.renderMoneyStack(left, 'left')}
         </div>
         <div className="mdl-mp-bet-place__column mdl-mp-bet-place__column_center">
-          {this.renderMoneyStack(center)}
+          {this.renderMoneyStack(center, 'center')}
         </div>
         <div className="mdl-mp-bet-place__column mdl-mp-bet-place__column_right">
-          {this.renderMoneyStack(right)}
+          {this.renderMoneyStack(right, 'right')}
         </div>
       </div>
     )
   }
 
-  private renderMoneyStack(moneyStack: string[], orientation?: string): ReactNode {
-    return moneyStack.map((amount, index) =>
+  private renderMoneyStack(moneyStack: string[], orientation: string): ReactNode {
+    return moneyStack.map((index) =>
       <div className="mdl-mp-bet-place__money-stack" key={index}>
-        <MoneyStack orientation={orientation}/>
+        <MoneyStack orientation={orientation} id={index}/>
       </div>
     );
   }
