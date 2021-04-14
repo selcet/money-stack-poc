@@ -10,21 +10,32 @@ import './game-area.scss';
 
 const classNames = require('classnames');
 
+const serverStackAmount: number = 40;
+const stackInOneLayer: number = 13;
+
 export class MdlPocGameArea extends PureComponent<MdlPocGameArea.Props> {
   readonly state: Readonly<{totalAmount: number}>;
 
   constructor(props: MdlPocGameArea.Props) {
     super(props);
-    this.state = {totalAmount: 13};
+    this.state = {totalAmount: 0};
     // @ts-ignore
-    window.updateTotalAmount = (totalAmount) => this.setState({...this.state, totalAmount});
+    // window.updateTotalAmount = (totalAmount) => this.setState({...this.state, totalAmount});
+  }
+
+  componentDidMount() {
+    if (serverStackAmount > stackInOneLayer) {
+      this.iterableUpdateTotalAmount(serverStackAmount);
+    } else {
+      this.updateTotalAmount(serverStackAmount);
+    }
   }
 
   render() {
     const { perspectiveView } = this.props;
     const classes = classNames(
       'mdl-mp-game-area',
-      perspectiveViewToClassName(perspectiveView)
+      this.perspectiveViewToClassName(perspectiveView),
     );
     const moneyStacks = createMoneyStacksArray(1, this.state.totalAmount);
 
@@ -35,6 +46,36 @@ export class MdlPocGameArea extends PureComponent<MdlPocGameArea.Props> {
         </div>
       </div>
     );
+  }
+
+  private updateTotalAmount(totalAmount: number): void {
+    this.setState({...this.state, totalAmount});
+  };
+
+  private iterableUpdateTotalAmount(totalAmount: number) {
+    let iterator: number = 0;
+
+    let iterableUpdate = (setInterval(() => {
+      if (iterator >= totalAmount) {
+        clearInterval(iterableUpdate);
+      }
+
+      this.updateTotalAmount(iterator);
+      iterator++;
+    }, 100));
+  }
+
+  private perspectiveViewToClassName(view: MdlPocGameArea.PerspectiveView): string {
+    switch (view) {
+      case MdlPocGameArea.PerspectiveView.topBetting:
+        return 'mdl-mp-game-area_view-top-betting';
+      case MdlPocGameArea.PerspectiveView.topDrop:
+        return 'mdl-mp-game-area_view-top-drop';
+      case MdlPocGameArea.PerspectiveView.front:
+        return 'mdl-mp-game-area_view-front';
+      default:
+        return assertNever(view);
+    }
   }
 }
 
@@ -66,17 +107,4 @@ export namespace MdlPocGameArea {
     perspectiveView: PerspectiveView;
     moneyStackPositions?: MoneyStackPositions;
   }>;
-}
-
-function perspectiveViewToClassName(view: MdlPocGameArea.PerspectiveView): string {
-  switch (view) {
-    case MdlPocGameArea.PerspectiveView.topBetting:
-      return 'mdl-mp-game-area_view-top-betting';
-    case MdlPocGameArea.PerspectiveView.topDrop:
-      return 'mdl-mp-game-area_view-top-drop';
-    case MdlPocGameArea.PerspectiveView.front:
-      return 'mdl-mp-game-area_view-front';
-    default:
-      return assertNever(view);
-  }
 }
