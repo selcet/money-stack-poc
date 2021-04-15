@@ -20,12 +20,12 @@ export class MdlPocGameArea extends PureComponent<MdlPocGameArea.Props> {
     super(props);
     this.state = {totalAmount: 0};
     // @ts-ignore
-    // window.updateTotalAmount = (totalAmount) => this.setState({...this.state, totalAmount});
+    window.updateTotalAmount = (totalAmount) => this.setState({...this.state, totalAmount});
   }
 
   componentDidMount() {
     if (serverStackAmount > stackInOneLayer) {
-      this.iterableUpdateTotalAmount(serverStackAmount);
+      this.iterableUpdateTotalAmount(serverStackAmount, stackInOneLayer);
     } else {
       this.updateTotalAmount(serverStackAmount);
     }
@@ -52,17 +52,36 @@ export class MdlPocGameArea extends PureComponent<MdlPocGameArea.Props> {
     this.setState({...this.state, totalAmount});
   };
 
-  private iterableUpdateTotalAmount(totalAmount: number) {
+  private iterableUpdateTotalAmount(totalAmount: number, stacksPerLayer: number) {
     let iterator: number = 0;
 
-    let iterableUpdate = (setInterval(() => {
-      if (iterator >= totalAmount) {
-        clearInterval(iterableUpdate);
-      }
+    let animationWithInterval = (setInterval(() => {
+      let iterableUpdate = (setInterval(() => {
+        if (
+          iterator === stacksPerLayer
+          || iterator === (stacksPerLayer * 2)
+        ) {
+          clearInterval(iterableUpdate);
+        }
 
-      this.updateTotalAmount(iterator);
-      iterator++;
-    }, 100));
+        if (iterator > totalAmount) {
+          clearInterval(iterableUpdate);
+          setTimeout(() => {
+            this.updateTotalAmount(iterator);
+          }, 2000);
+
+          iterator = 0;
+          return;
+        }
+
+        this.updateTotalAmount(iterator);
+        iterator++;
+      }, 100));
+
+      if (iterator >= totalAmount) {
+        clearInterval(animationWithInterval);
+      }
+    }, 3000));
   }
 
   private perspectiveViewToClassName(view: MdlPocGameArea.PerspectiveView): string {
