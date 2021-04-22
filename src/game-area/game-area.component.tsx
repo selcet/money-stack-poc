@@ -10,7 +10,7 @@ import './game-area.scss';
 
 const classNames = require('classnames');
 
-const serverStackAmount: number = 40;
+const serverStackAmount: number = 13;
 const stackInOneLayer: number = 13;
 
 export class MdlPocGameArea extends PureComponent<MdlPocGameArea.Props> {

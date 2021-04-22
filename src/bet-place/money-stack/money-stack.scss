@@ -11,7 +11,8 @@
 
   @for $i from 1 through 13 {
     &_#{$i} {
-      animation-name: appear-stack;
+      //TODO:stackAnimation get back to here
+      //animation-name: appear-stack;
     }
   }
 
@@ -94,5 +95,38 @@
   100% {
     opacity: 1;
     transform: translate(0, 0) rotateZ(0);
+  }
+}
+
+@keyframes drop-stack {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+
+  20% {
+    transform: translate(3px, 10px) scale(0.95) rotate3d(0, 1, 1, 0deg);
+  }
+
+  40% {
+    transform: translate(20px, 17px) scale(0.8794) rotate3d(0, 1, 1, -5deg);
+  }
+
+  60% {
+    transform: translate(30px, 23px) scale(0.8088) rotate3d(0, 1, 1, -15deg);
+  }
+
+  80% {
+    opacity: 0.8;
+    transform: translate(40px, 27px) scale(0.7382) rotate3d(0, 1, 1, -45deg);
+  }
+
+  88% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(50px, 35px) scale(0.6675) rotate3d(0, 1, 1, -90deg);
   }
 }
