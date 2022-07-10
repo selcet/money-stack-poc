@@ -1,1 +1,0 @@
-### Money pile's documentation
