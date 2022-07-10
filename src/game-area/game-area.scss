@@ -16,7 +16,7 @@
 
   &_view-top-betting,
   &_view-top-drop {
-    background-image: url("./images/mdl-poc-top-view_betting.jpg");
+    background-image: url("images/mp-poc-top-view_betting.jpg");
 
     .mdl-mp-game-area__bet-place {
       //bottom: 17.15%;
@@ -53,10 +53,10 @@
     }
 
     .mdl-mp-money-stack {
-      background-image: url("./images/money-stack-top-view_horizontal.svg");
+      background-image: url("images/mp-top-view_horizontal.svg");
 
       &_left {
-        background-image: url("./images/money-stack-top-view_vertical.svg");
+        background-image: url("images/mp-top-view_vertical.svg");
       }
     }
   }
@@ -72,7 +72,7 @@
   }
 
   &_view-top-drop {
-    background-image: url("./images/mdl-poc-top-view_drop.jpg");
+    background-image: url("images/mp-poc-top-view_drop.jpg");
     transition: background-image 400ms ease-in-out;
 
     .mdl-mp-bet-place__layer {
@@ -184,7 +184,7 @@
   }
 
   &_view-front {
-    background-image: url("./images/mdl-poc-front-view.jpg");
+    background-image: url("images/mp-poc-front-view.jpg");
 
     .mdl-mp-game-area__bet-place {
       bottom: 29.4%;
@@ -219,12 +219,12 @@
 
     .mdl-mp-money-stack {
       &_left {
-        background-image: url("./images/money-stack-front-view_vertical.svg");
+        background-image: url("images/mp-front-view_vertical.svg");
       }
 
       &_center,
       &_right {
-        background-image: url("./images/money-stack-front-view_horizontal.svg");
+        background-image: url("images/mp-front-view_horizontal.svg");
       }
     }
   }
